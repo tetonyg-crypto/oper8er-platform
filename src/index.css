@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #7F77DD;
+  --color-primary-light: #F0EFFF;
+  --color-primary-dark: #534AB7;
+  --color-surface: #FFFFFF;
+  --color-page: #F2F2F7;
+  --color-txt: #1C1C1E;
+  --color-txt-secondary: #636366;
+  --color-txt-tertiary: #AEAEB2;
+  --color-ok: #34C759;
+  --color-warn: #FF9500;
+  --color-danger: #FF3B30;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { -webkit-font-smoothing: antialiased; scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
+  background: #F2F2F7;
+  color: #1C1C1E;
+  min-height: 100vh;
+}
+#root { min-height: 100vh; }
+
+@keyframes shimmer { 0%{background-position:200% 0}100%{background-position:-200% 0} }
+.skeleton { background:linear-gradient(90deg,#E8E8ED 25%,#F2F2F7 50%,#E8E8ED 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px; }
+@keyframes dot-pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)} }
+.card { background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06); }
