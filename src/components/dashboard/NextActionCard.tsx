@@ -49,7 +49,7 @@ export default function NextActionCard({ events }: NextActionCardProps) {
       <div className="mb-4">
         <div className="flex items-center gap-2 mb-1">
           <StatusDot timestamp={top.created_at} pulse />
-          <span className="text-lg font-bold text-[#1C1C1E]">{top.customer_name}</span>
+          <span className="text-lg font-bold text-[#1C1C1E]">{top.customer_name || 'Unknown Customer'}</span>
         </div>
         <div className="flex items-center gap-2 mb-1">
           <span className="text-xs text-[#636366]">{top.platform || 'VinSolutions'}</span>
@@ -77,7 +77,7 @@ export default function NextActionCard({ events }: NextActionCardProps) {
             <div key={e.customer_name} className="flex items-center gap-2 py-1">
               <StatusDot timestamp={e.created_at} />
               <span className="text-sm font-medium text-[#1C1C1E] flex-1 truncate">
-                {e.customer_name}
+                {e.customer_name || 'Unknown Customer'}
               </span>
               <span className="text-xs text-[#AEAEB2]">{timeAgo(e.created_at)}</span>
             </div>

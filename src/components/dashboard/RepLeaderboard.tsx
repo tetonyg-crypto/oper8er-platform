@@ -9,7 +9,7 @@ interface RepLeaderboardProps {
 export default function RepLeaderboard({ todayEvents }: RepLeaderboardProps) {
   const repCounts = new Map<string, number>()
   todayEvents.forEach((e) => {
-    if (!e.rep_name) return
+    if (!e.rep_name || e.rep_name === 'Unassigned') return
     repCounts.set(e.rep_name, (repCounts.get(e.rep_name) || 0) + 1)
   })
 

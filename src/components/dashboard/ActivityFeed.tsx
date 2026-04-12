@@ -76,7 +76,7 @@ export default function ActivityFeed({ events }: ActivityFeedProps) {
                 <StatusDot timestamp={e.created_at} />
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-[#1C1C1E] truncate">
-                    {e.customer_name || 'Unknown'}
+                    {e.customer_name || 'Unknown Customer'}
                   </p>
                   <p className="text-xs text-[#AEAEB2] truncate">
                     {e.platform || 'VinSolutions'}

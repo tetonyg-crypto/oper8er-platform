@@ -74,7 +74,14 @@ export function useEvents(dealership?: string): UseEventsReturn {
         return
       }
 
-      setAllEvents((data as GenerationEvent[]) || [])
+      // Sanitize customer and rep names — never show empty/null in UI
+      const sanitized = ((data as GenerationEvent[]) || []).map(e => ({
+        ...e,
+        customer_name: e.customer_name?.trim() || 'Unknown Customer',
+        rep_name: e.rep_name?.trim() || 'Unassigned',
+        vehicle: e.vehicle?.trim() || '',
+      }))
+      setAllEvents(sanitized)
       setError(null)
       setLastRefresh(new Date())
     } catch (err) {
