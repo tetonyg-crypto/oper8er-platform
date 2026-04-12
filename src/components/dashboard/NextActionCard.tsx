@@ -62,9 +62,6 @@ export default function NextActionCard({ events }: NextActionCardProps) {
             "{top.input.slice(0, 120)}{top.input.length > 120 ? '...' : ''}"
           </p>
         )}
-        <button className="mt-3 w-full bg-[#7F77DD] hover:bg-[#534AB7] text-white text-sm font-semibold py-2 rounded-lg transition-colors cursor-pointer">
-          Open Oper8er
-        </button>
       </div>
 
       {/* Next waiting */}

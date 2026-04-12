@@ -39,9 +39,6 @@ export default function FloorView({
     return hours >= 48 && hours <= 720
   }).length
 
-  // Avg response: placeholder calculation based on time between events per customer
-  const avgResponse = todayEvents.length > 0 ? '<3s' : '--'
-
   // Top rep today
   const repCounts = new Map<string, number>()
   todayEvents.forEach((e) => {
@@ -60,14 +57,13 @@ export default function FloorView({
   return (
     <div className="space-y-6">
       {/* ROW 1: Metric Cards */}
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         <MetricCard
           label="Floor Active"
           value={`${activeReps.size}/${allReps.size}`}
           loading={loading}
         />
         <MetricCard label="Assists Today" value={todayEvents.length} loading={loading} />
-        <MetricCard label="Avg Response" value={avgResponse} loading={loading} />
         <MetricCard label="Ghost Leads" value={ghostCount} color="#FF3B30" loading={loading} />
         <MetricCard
           label="Top Rep Today"

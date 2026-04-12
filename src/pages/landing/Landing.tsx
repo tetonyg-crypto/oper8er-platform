@@ -1,13 +1,33 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { supabase } from '../../lib/supabase'
 
-const STATS = [
-  { value: '2,847', label: 'Outputs Generated' },
-  { value: '12', label: 'Dealerships Active' },
-  { value: '4', label: 'Platforms Connected' },
-  { value: '<3s', label: 'Generation Time' },
-  { value: '98%', label: 'Rep Adoption' },
-]
+function useLiveStats() {
+  const [stats, setStats] = useState([
+    { value: '—', label: 'Outputs Generated' },
+    { value: '—', label: 'Dealerships Active' },
+    { value: '6', label: 'Platforms Connected' },
+    { value: '<3s', label: 'Generation Time' },
+  ])
+
+  useEffect(() => {
+    Promise.all([
+      supabase.from('generation_events').select('id', { count: 'exact', head: true }),
+      supabase.from('dealerships').select('id', { count: 'exact', head: true }).eq('status', 'active'),
+    ]).then(([events, dealers]) => {
+      const evtCount = events.count || 0
+      const dlrCount = dealers.count || 0
+      setStats([
+        { value: evtCount.toLocaleString(), label: 'Outputs Generated' },
+        { value: String(dlrCount), label: 'Dealerships Active' },
+        { value: '6', label: 'Platforms Connected' },
+        { value: '<3s', label: 'Generation Time' },
+      ])
+    })
+  }, [])
+
+  return stats
+}
 
 const PRODUCTS: { name: string; tagline: string; features: string[] }[] = [
   {
@@ -91,6 +111,7 @@ const PRICING = [
 ]
 
 export default function Landing() {
+  const STATS = useLiveStats()
   const [activeProduct, setActiveProduct] = useState(0)
 
   return (

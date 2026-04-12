@@ -4,7 +4,6 @@ import MetricCard from '../../components/MetricCard'
 import NextActionCard from '../../components/dashboard/NextActionCard'
 import ActivityFeed from '../../components/dashboard/ActivityFeed'
 import ObjectionTracker from '../../components/dashboard/ObjectionTracker'
-import MonthlyPace from '../../components/dashboard/MonthlyPace'
 import GhostQueue from '../../components/dashboard/GhostQueue'
 
 interface HunterViewProps {
@@ -35,10 +34,9 @@ export default function HunterView({
   return (
     <div className="space-y-6">
       {/* ROW 1: Metric Cards */}
-      <div className="grid grid-cols-5 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         <MetricCard label="Assists Today" value={todayEvents.length} loading={loading} />
         <MetricCard label="Active Conversations" value={activeConversations} loading={loading} />
-        <MetricCard label="Unread Replies" value="0" color="#FF3B30" loading={loading} />
         <MetricCard label="Platforms Active" value={platformsActive} loading={loading} />
         <MetricCard
           label="Streak"
@@ -54,7 +52,6 @@ export default function HunterView({
         <ActivityFeed events={allEvents} />
         <div className="space-y-4">
           <ObjectionTracker events={weekEvents} />
-          <MonthlyPace monthEvents={monthEvents} />
         </div>
       </div>
 

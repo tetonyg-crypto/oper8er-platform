@@ -7,15 +7,15 @@ export default function Privacy() {
           <h1 style={{ fontSize: 32, fontWeight: 700, color: '#1C1C1E', letterSpacing: '-0.3px', marginBottom: 8 }}>Privacy Policy</h1>
           <p style={{ fontSize: 14, color: '#636366', marginBottom: 32 }}>Effective April 2, 2026 &middot; Last updated April 2, 2026</p>
 
-          <Section title="What Floq Does">
-            Floq is a Chrome extension that helps automotive sales representatives generate professional text messages, emails, and CRM notes using AI. It operates inside CRM platforms (such as VinSolutions), email clients, and social media to assist reps with customer communications.
+          <Section title="What Brevmont Does">
+            Brevmont is a Chrome extension that helps automotive sales representatives generate professional text messages, emails, and CRM notes using AI. It operates inside CRM platforms (such as VinSolutions), email clients, and social media to assist reps with customer communications.
           </Section>
 
           <Section title="What Data We Collect">
-            <p>Floq collects the following data to provide its core functionality:</p>
+            <p>Brevmont collects the following data to provide its core functionality:</p>
             <ul>
               <li><strong>Rep profile information:</strong> First name, last name, job title, dealership name, city, state, communication preferences, and selling style. This information is provided voluntarily during onboarding and stored locally in the browser via Chrome storage.</li>
-              <li><strong>Customer context from CRM pages:</strong> When a rep opens Floq on a CRM page, the extension reads visible customer information (name, phone, email, vehicle of interest, status) from the current webpage. This data is used solely to generate a relevant AI response and is not stored permanently on our servers.</li>
+              <li><strong>Customer context from CRM pages:</strong> When a rep opens Brevmont on a CRM page, the extension reads visible customer information (name, phone, email, vehicle of interest, status) from the current webpage. This data is used solely to generate a relevant AI response and is not stored permanently on our servers.</li>
               <li><strong>Generation events:</strong> When a rep generates a text, email, or CRM note, we log the following to our database: rep name, dealership name, customer name, vehicle, platform used (e.g., VinSolutions, Gmail), the type of output generated, and a timestamp. We do not store the full content of generated outputs on our servers.</li>
               <li><strong>License key:</strong> A dealership-issued license key is stored locally to validate access.</li>
             </ul>
@@ -44,7 +44,7 @@ export default function Privacy() {
               <li>We do not use data for advertising</li>
               <li>We do not track browsing history outside of supported CRM and communication platforms</li>
               <li>We do not store passwords, credit card numbers, or financial information</li>
-              <li>We do not access data from pages where Floq is not actively being used by the rep</li>
+              <li>We do not access data from pages where Brevmont is not actively being used by the rep</li>
             </ul>
           </Section>
 
@@ -57,25 +57,25 @@ export default function Privacy() {
           </Section>
 
           <Section title="Your Rights">
-            You may request deletion of your data at any time by contacting yancy@yenes.ai. Dealership administrators may request deletion of all data associated with their dealership.
+            You may request deletion of your data at any time by contacting privacy@brevmont.com. Dealership administrators may request deletion of all data associated with their dealership.
           </Section>
 
           <Section title="Changes to This Policy">
-            We may update this privacy policy from time to time. Changes will be posted at floqsales.com/privacy with an updated effective date.
+            We may update this privacy policy from time to time. Changes will be posted at brevmont.com/privacy with an updated effective date.
           </Section>
 
           <Section title="Contact">
             <p>For questions about this privacy policy or your data:</p>
             <p style={{ marginTop: 8 }}>
-              <strong>Email:</strong> yancy@yenes.ai<br />
-              <strong>Company:</strong> YENES<br />
-              <strong>Website:</strong> floqsales.com
+              <strong>Email:</strong> privacy@brevmont.com<br />
+              <strong>Company:</strong> Brevmont Labs LLC<br />
+              <strong>Website:</strong> brevmont.com
             </p>
           </Section>
         </div>
 
         <div style={{ textAlign: 'center' as const, padding: '24px 0', fontSize: 12, color: '#AEAEB2' }}>
-          &copy; 2026 YENES. All rights reserved.
+          &copy; 2026 Brevmont Labs LLC. All rights reserved.
         </div>
       </div>
     </div>

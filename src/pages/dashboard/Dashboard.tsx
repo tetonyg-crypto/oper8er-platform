@@ -1,12 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useEvents } from '../../hooks/useEvents'
 import { timeAgo } from '../../lib/utils'
+import { supabase } from '../../lib/supabase'
 import HunterView from './HunterView'
 import FloorView from './FloorView'
 
 export default function Dashboard() {
   const [tab, setTab] = useState<'hunter' | 'floor'>('hunter')
   const { allEvents, todayEvents, weekEvents, monthEvents, loading, lastRefresh } = useEvents()
+  const [dealershipName, setDealershipName] = useState('')
+
+  useEffect(() => {
+    supabase.from('dealerships').select('name').eq('status', 'active').limit(1).single()
+      .then(({ data }) => { if (data?.name) setDealershipName(data.name) })
+  }, [])
 
   return (
     <div className="min-h-screen bg-[#F2F2F7]">
@@ -45,7 +52,7 @@ export default function Dashboard() {
 
         {/* Right side */}
         <div className="text-right">
-          <p className="text-sm font-semibold text-[#1C1C1E]">Stone's Auto Group</p>
+          <p className="text-sm font-semibold text-[#1C1C1E]">{dealershipName || 'Dashboard'}</p>
           <p className="text-xs text-[#AEAEB2]">Updated {timeAgo(lastRefresh.toISOString())}</p>
         </div>
       </nav>

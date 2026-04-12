@@ -46,8 +46,9 @@ export default function GhostQueue({ allEvents, showReassign }: GhostQueueProps)
         to_rep: toRep,
       })
       setReassigned((prev) => new Set(prev).add(ghost.customer_name))
-    } catch {
-      // silently fail
+    } catch (err) {
+      console.error('Reassignment failed:', err)
+      alert('Reassignment failed. Please try again.')
     } finally {
       setReassigning(null)
     }
@@ -119,17 +120,10 @@ export default function GhostQueue({ allEvents, showReassign }: GhostQueueProps)
                             </option>
                           ))}
                       </select>
-                      <button className="text-xs font-semibold px-3 py-1 rounded-lg bg-[#F0EFFF] text-[#7F77DD] hover:bg-[#7F77DD] hover:text-white transition-colors cursor-pointer whitespace-nowrap">
-                        Trident
-                      </button>
                     </>
                   )}
                 </div>
-              ) : (
-                <button className="text-xs font-semibold px-3 py-1 rounded-lg border border-black/10 text-[#636366] hover:bg-[#F2F2F7] transition-colors cursor-pointer whitespace-nowrap">
-                  Harpoon
-                </button>
-              )}
+              ) : null}
             </div>
           )
         })}
