@@ -11,6 +11,8 @@ import Owner from './pages/Owner'
 import Errors from './pages/Errors'
 import Metrics from './pages/Metrics'
 import Founder from './pages/Founder'
+import OwnerROI from './pages/OwnerROI'
+import Costs from './pages/Costs'
 
 export default function App() {
   return (
@@ -30,7 +32,9 @@ export default function App() {
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/owner" element={<Owner />} />
+            <Route path="/owner/roi" element={<OwnerROI />} />
             <Route path="/founder" element={<Founder />} />
+            <Route path="/founder/costs" element={<Costs />} />
           </Route>
         </Routes>
       </AuthProvider>
