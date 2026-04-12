@@ -109,7 +109,7 @@ export default function Metrics() {
         {data && (
           <>
             {/* Summary Cards */}
-            <div className="grid grid-cols-5 gap-4 mb-8">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 mb-8">
               <div className="bg-[#1A2028] rounded-xl p-5 border border-white/5">
                 <p className="text-[11px] uppercase font-semibold tracking-wide text-[#636366] mb-1">Requests (24h)</p>
                 <p className="text-3xl font-bold text-[#F8F6F1]">{data.total.toLocaleString()}</p>

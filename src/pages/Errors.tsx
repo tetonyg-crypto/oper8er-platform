@@ -100,7 +100,7 @@ export default function Errors() {
         {data && (
           <>
             {/* Summary Cards */}
-            <div className="grid grid-cols-4 gap-4 mb-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
               <div className="bg-white rounded-xl p-5 border border-black/5">
                 <p className="text-[11px] uppercase font-semibold tracking-wide text-[#636366] mb-1">Last 24h</p>
                 <p className="text-3xl font-bold text-[#1C1C1E]">{data.total}</p>

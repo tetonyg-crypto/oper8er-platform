@@ -5,6 +5,7 @@ import ActivityFeed from '../components/dashboard/ActivityFeed'
 import RepLeaderboard from '../components/dashboard/RepLeaderboard'
 import GhostQueue from '../components/dashboard/GhostQueue'
 import InviteRepModal from '../components/InviteRepModal'
+import OnboardingView from '../components/OnboardingView'
 import type { GenerationEvent } from '../hooks/useEvents'
 
 const PROXY_URL = 'https://web-production-af474.up.railway.app'
@@ -33,6 +34,7 @@ export default function Owner() {
   const [loading, setLoading] = useState(true)
   const [showInvite, setShowInvite] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [onboardingState, setOnboardingState] = useState<any>(null)
 
   const fetchDashboard = useCallback(async () => {
     if (!session?.access_token) return
@@ -43,6 +45,18 @@ export default function Owner() {
       if (resp.ok) {
         const d = await resp.json()
         setData(d)
+        // Check onboarding state — show guided view for new dealerships
+        const showOnboarding = d.stats?.total < 5 || !d.reps?.length
+        if (showOnboarding) {
+          setOnboardingState({
+            rep_added_at: d.reps?.length > 0 ? new Date().toISOString() : null,
+            extension_installed_at: d.stats?.total > 0 ? new Date().toISOString() : null,
+            first_generation_at: d.stats?.total > 0 ? new Date().toISOString() : null,
+            first_week_complete_at: d.stats?.total >= 5 ? new Date().toISOString() : null,
+          })
+        } else {
+          setOnboardingState(null)
+        }
       }
     } catch (err) {
       console.error('Failed to load dashboard:', err)
@@ -118,9 +132,16 @@ export default function Owner() {
       </nav>
 
       <main className="max-w-[1200px] mx-auto p-6">
+        {/* Onboarding view for new dealerships */}
+        {!loading && onboardingState && (
+          <div className="mb-6">
+            <OnboardingView state={onboardingState} dealershipName={data?.dealership?.name || 'Your Dealership'} />
+          </div>
+        )}
+
         {loading ? (
           <div className="space-y-4">
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[1, 2, 3, 4].map(i => (
                 <div key={i} className="card h-20 animate-pulse bg-[#F2F2F7]" />
               ))}
@@ -161,7 +182,7 @@ export default function Owner() {
             </div>
 
             {/* Metrics */}
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <MetricCard label="Total Generations" value={data.stats.total} loading={false} />
               <MetricCard label="Today" value={data.stats.today} loading={false} />
               <MetricCard label="This Week" value={data.stats.thisWeek} loading={false} />

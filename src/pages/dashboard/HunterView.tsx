@@ -34,7 +34,7 @@ export default function HunterView({
   return (
     <div className="space-y-6">
       {/* ROW 1: Metric Cards */}
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <MetricCard label="Assists Today" value={todayEvents.length} loading={loading} />
         <MetricCard label="Active Conversations" value={activeConversations} loading={loading} />
         <MetricCard label="Platforms Active" value={platformsActive} loading={loading} />

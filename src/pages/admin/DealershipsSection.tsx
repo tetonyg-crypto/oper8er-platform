@@ -109,7 +109,7 @@ export default function DealershipsSection() {
             {[1, 2, 3].map(i => <div key={i} className="w-full h-10 rounded bg-[#F2F2F7] animate-pulse" />)}
           </div>
         ) : (
-          <table className="w-full">
+          <div className="overflow-x-auto"><table className="w-full min-w-[800px]">
             <thead>
               <tr className="border-b border-black/8">
                 <th className="text-left text-[11px] uppercase font-semibold tracking-wide text-[#636366] px-4 py-3">Name</th>
@@ -187,7 +187,7 @@ export default function DealershipsSection() {
                 </>
               ))}
             </tbody>
-          </table>
+          </table></div>
         )}
       </div>
 

@@ -100,7 +100,7 @@ export default function Founder() {
             <h1 className="text-2xl font-bold text-[#F8F6F1]">Company Health</h1>
 
             {/* Row 1: Revenue */}
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Widget label="MRR" value={`$${data.mrr.toLocaleString()}`} color="#10B981" />
               <Widget label="Active Dealerships" value={data.active_dealerships} subtext={`${data.total_dealerships} total`} />
               <Widget label="New This Month" value={data.new_this_month} color="#0D6E6E" />
@@ -108,7 +108,7 @@ export default function Founder() {
             </div>
 
             {/* Row 2: Unit Economics */}
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               <Widget label="Anthropic Spend (MTD)" value={`$${data.spend_mtd.toFixed(2)}`} color="#F59E0B" />
               <Widget label="Gross Margin" value={data.gross_margin.toFixed(1)} suffix="%" color={marginColor} />
               <Widget label="Error Rate (24h)" value={data.error_rate_24h.toFixed(2)} suffix="%" color={errorColor} subtext={`${data.errors_24h} errors / ${data.gen_24h} gens`} />

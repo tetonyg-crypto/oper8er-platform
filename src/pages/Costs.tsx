@@ -72,7 +72,7 @@ export default function Costs() {
 
       <main className="max-w-[1200px] mx-auto p-6">
         {loading ? (
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1, 2, 3].map(i => (
               <div key={i} className="bg-[#1A2028] rounded-xl h-24 animate-pulse" />
             ))}
