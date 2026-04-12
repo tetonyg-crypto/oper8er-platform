@@ -9,6 +9,7 @@ import Success from './pages/Success'
 import Login from './pages/Login'
 import Owner from './pages/Owner'
 import Errors from './pages/Errors'
+import Metrics from './pages/Metrics'
 
 export default function App() {
   return (
@@ -23,6 +24,7 @@ export default function App() {
           <Route path="/success" element={<Success />} />
           <Route path="/login" element={<Login />} />
           <Route path="/internal/errors" element={<Errors />} />
+          <Route path="/internal/metrics" element={<Metrics />} />
 
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>
