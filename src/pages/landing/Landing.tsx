@@ -63,6 +63,8 @@ const PRODUCTS: { name: string; tagline: string; features: string[] }[] = [
   },
 ]
 
+const PROXY_URL = 'https://web-production-af474.up.railway.app'
+
 const PRICING = [
   {
     name: 'Floor',
@@ -76,7 +78,7 @@ const PRICING = [
       'Up to 5 reps included',
     ],
     cta: 'Start with Floor',
-    href: '#cta',
+    tier: 'floor',
     highlighted: false,
   },
   {
@@ -92,7 +94,7 @@ const PRICING = [
       '$35K/year option (save $7,000)',
     ],
     cta: 'Get Command',
-    href: '#cta',
+    tier: 'command',
     highlighted: true,
   },
   {
@@ -108,10 +110,32 @@ const PRICING = [
       'Contact for quote',
     ],
     cta: 'Contact Us',
-    href: 'mailto:founder@brevmont.com?subject=Brevmont Group Pricing',
+    tier: 'group',
     highlighted: false,
   },
 ]
+
+async function startCheckout(tier: string) {
+  if (tier === 'group') {
+    window.location.href = 'mailto:founder@brevmont.com?subject=Brevmont Group Pricing'
+    return
+  }
+  try {
+    const resp = await fetch(`${PROXY_URL}/api/create-checkout`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ tier })
+    })
+    const data = await resp.json()
+    if (data.url) {
+      window.location.href = data.url
+    } else {
+      alert('Unable to start checkout. Please email founder@brevmont.com.')
+    }
+  } catch {
+    alert('Unable to start checkout. Please email founder@brevmont.com.')
+  }
+}
 
 export default function Landing() {
   const STATS = useLiveStats()
@@ -270,16 +294,16 @@ export default function Landing() {
                     </li>
                   ))}
                 </ul>
-                <a
-                  href={plan.href}
-                  className={`block text-center text-sm font-semibold py-2.5 rounded-lg transition-colors ${
+                <button
+                  onClick={() => startCheckout(plan.tier)}
+                  className={`block w-full text-center text-sm font-semibold py-2.5 rounded-lg transition-colors cursor-pointer ${
                     plan.highlighted
                       ? 'bg-[#7F77DD] hover:bg-[#534AB7] text-white'
                       : 'border border-black/10 text-[#1C1C1E] hover:bg-[#F2F2F7]'
                   }`}
                 >
                   {plan.cta}
-                </a>
+                </button>
               </div>
             ))}
           </div>
