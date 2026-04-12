@@ -21,9 +21,9 @@ export default function Dashboard() {
       <nav className="sticky top-0 z-50 bg-white border-b border-black/8 px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-[#7F77DD] flex items-center justify-center">
-            <span className="text-white font-bold text-sm">O8</span>
+            <span className="text-white font-bold text-sm">B</span>
           </div>
-          <span className="font-bold text-[#1C1C1E] text-lg">Oper8er</span>
+          <span className="font-bold text-[#1C1C1E] text-lg">Brevmont</span>
         </div>
 
         {/* Tab Switcher */}

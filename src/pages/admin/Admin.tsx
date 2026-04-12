@@ -4,12 +4,11 @@ import AdminDashboard from './AdminDashboard'
 import ClientsSection from './ClientsSection'
 import UsageSection from './UsageSection'
 
-type Section = 'dashboard' | 'clients' | 'keys' | 'usage'
+type Section = 'dashboard' | 'clients' | 'usage'
 
 const NAV_ITEMS: { key: Section; label: string }[] = [
   { key: 'dashboard', label: 'Dashboard' },
   { key: 'clients', label: 'Clients' },
-  { key: 'keys', label: 'License Keys' },
   { key: 'usage', label: 'Usage' },
 ]
 
@@ -23,9 +22,9 @@ export default function Admin() {
       <aside className="w-[240px] bg-white border-r border-black/8 p-4 shrink-0 sticky top-0 h-screen">
         <div className="flex items-center gap-2 mb-8 px-2">
           <div className="w-8 h-8 rounded-lg bg-[#7F77DD] flex items-center justify-center">
-            <span className="text-white font-bold text-sm">O8</span>
+            <span className="text-white font-bold text-sm">B</span>
           </div>
-          <span className="font-bold text-[#1C1C1E]">Oper8er Admin</span>
+          <span className="font-bold text-[#1C1C1E]">Brevmont Admin</span>
         </div>
         <nav className="space-y-1">
           {NAV_ITEMS.map((item) => (
@@ -54,7 +53,6 @@ export default function Admin() {
           />
         )}
         {active === 'clients' && <ClientsSection />}
-        {(active === 'keys') && <ClientsSection />}
         {active === 'usage' && (
           <UsageSection
             allEvents={allEvents}

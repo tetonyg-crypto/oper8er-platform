@@ -69,7 +69,7 @@ export default function PlatformChart({ todayEvents, weekEvents, monthEvents }: 
       {/* Upsell */}
       {outsidePct > 0 && (
         <p className="text-xs text-[#636366] leading-relaxed">
-          {outsidePct}% of your team's activity happens outside VinSolutions — Oper8er
+          {outsidePct}% of your team's activity happens outside VinSolutions — Brevmont
           captures it all in one place.
         </p>
       )}

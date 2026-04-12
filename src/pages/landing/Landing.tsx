@@ -76,6 +76,7 @@ const PRICING = [
       'Up to 5 reps included',
     ],
     cta: 'Start with Floor',
+    href: '#cta',
     highlighted: false,
   },
   {
@@ -91,6 +92,7 @@ const PRICING = [
       '$35K/year option (save $7,000)',
     ],
     cta: 'Get Command',
+    href: '#cta',
     highlighted: true,
   },
   {
@@ -106,6 +108,7 @@ const PRICING = [
       'Contact for quote',
     ],
     cta: 'Contact Us',
+    href: 'mailto:founder@brevmont.com?subject=Brevmont Group Pricing',
     highlighted: false,
   },
 ]
@@ -121,9 +124,9 @@ export default function Landing() {
         <div className="max-w-[1200px] mx-auto px-6 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 rounded-lg bg-[#7F77DD] flex items-center justify-center">
-              <span className="text-white font-bold text-sm">O8</span>
+              <span className="text-white font-bold text-sm">B</span>
             </div>
-            <span className="font-bold text-[#1C1C1E] text-lg">Oper8er</span>
+            <span className="font-bold text-[#1C1C1E] text-lg">Brevmont</span>
           </div>
           <div className="hidden md:flex items-center gap-8">
             <a href="#product" className="text-sm font-medium text-[#636366] hover:text-[#1C1C1E] transition-colors">
@@ -155,7 +158,7 @@ export default function Landing() {
             Your dealership's AI sales floor.
           </h1>
           <p className="text-lg text-[#636366] leading-relaxed mb-8 max-w-[640px] mx-auto">
-            Oper8er gives every rep an AI copilot that generates texts, emails, and CRM notes in
+            Brevmont gives every rep an AI copilot that generates texts, emails, and CRM notes in
             seconds — then shows management who's working and who's not.
           </p>
           <div className="flex items-center justify-center gap-3">
@@ -268,7 +271,7 @@ export default function Landing() {
                   ))}
                 </ul>
                 <a
-                  href="#cta"
+                  href={plan.href}
                   className={`block text-center text-sm font-semibold py-2.5 rounded-lg transition-colors ${
                     plan.highlighted
                       ? 'bg-[#7F77DD] hover:bg-[#534AB7] text-white'
@@ -290,10 +293,10 @@ export default function Landing() {
             Ready to see your floor in real time?
           </h2>
           <p className="text-[#AEAEB2] mb-8">
-            Book a 15-minute demo and see Oper8er running on your dealership's actual data.
+            Book a 15-minute demo and see Brevmont running on your dealership's actual data.
           </p>
           <a
-            href="mailto:yancy@yenes.co?subject=Oper8er Demo Request"
+            href="mailto:founder@brevmont.com?subject=Brevmont Demo Request"
             className="inline-block bg-[#7F77DD] hover:bg-[#534AB7] text-white text-sm font-semibold px-8 py-3 rounded-lg transition-colors"
           >
             Book a Demo
@@ -307,12 +310,12 @@ export default function Landing() {
           <div>
             <div className="flex items-center gap-2 mb-4">
               <div className="w-7 h-7 rounded-lg bg-[#7F77DD] flex items-center justify-center">
-                <span className="text-white font-bold text-xs">O8</span>
+                <span className="text-white font-bold text-xs">B</span>
               </div>
-              <span className="font-bold text-white">Oper8er</span>
+              <span className="font-bold text-white">Brevmont</span>
             </div>
             <p className="text-sm text-[#636366] leading-relaxed">
-              AI sales execution infrastructure for dealerships. Built by YENES.
+              AI sales execution infrastructure for dealerships. Brevmont Labs LLC.
             </p>
           </div>
           <div>
@@ -348,7 +351,7 @@ export default function Landing() {
             </p>
             <ul className="space-y-2">
               <li>
-                <a href="mailto:yancy@yenes.co" className="text-sm text-[#AEAEB2] hover:text-white transition-colors">
+                <a href="mailto:founder@brevmont.com" className="text-sm text-[#AEAEB2] hover:text-white transition-colors">
                   Contact
                 </a>
               </li>
@@ -358,8 +361,8 @@ export default function Landing() {
                 </Link>
               </li>
               <li>
-                <Link to="/admin" className="text-sm text-[#AEAEB2] hover:text-white transition-colors">
-                  Admin
+                <Link to="/privacy" className="text-sm text-[#AEAEB2] hover:text-white transition-colors">
+                  Privacy
                 </Link>
               </li>
             </ul>
@@ -367,7 +370,7 @@ export default function Landing() {
         </div>
         <div className="max-w-[1100px] mx-auto mt-8 pt-6 border-t border-white/10">
           <p className="text-xs text-[#636366]">
-            &copy; {new Date().getFullYear()} YENES. All rights reserved.
+            &copy; {new Date().getFullYear()} Brevmont Labs LLC. All rights reserved.
           </p>
         </div>
       </footer>
