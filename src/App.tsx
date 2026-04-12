@@ -8,6 +8,7 @@ import Privacy from './pages/Privacy'
 import Success from './pages/Success'
 import Login from './pages/Login'
 import Owner from './pages/Owner'
+import Errors from './pages/Errors'
 
 export default function App() {
   return (
@@ -21,6 +22,7 @@ export default function App() {
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/success" element={<Success />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/internal/errors" element={<Errors />} />
 
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>
