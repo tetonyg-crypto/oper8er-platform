@@ -181,18 +181,21 @@ export default function Success() {
             <p className="text-xs text-[#AEAEB2] mt-1">We respond within the hour during MST business hours.</p>
           </div>
           <Link
-            to="/dashboard"
+            to="/owner"
             className="bg-[#7F77DD] hover:bg-[#534AB7] text-white text-sm font-semibold px-5 py-2.5 rounded-lg transition-colors"
           >
             Open Dashboard
           </Link>
         </div>
 
-        {/* Check email reminder */}
+        {/* Check email reminder + owner login CTA */}
         {data.email && (
-          <div className="mt-6 bg-[#F2F2F7] rounded-xl p-4 text-center">
+          <div className="mt-6 bg-[#F0EFFF] rounded-xl p-4 text-center">
+            <p className="text-sm font-medium text-[#1C1C1E] mb-1">
+              Check your email for a login link
+            </p>
             <p className="text-sm text-[#636366]">
-              We also sent these instructions to <strong className="text-[#1C1C1E]">{data.email}</strong>.
+              We sent a magic link to <strong className="text-[#1C1C1E]">{data.email}</strong> to access your owner dashboard where you can invite reps, see analytics, and manage billing.
               <br />Forward that email to your sales floor.
             </p>
           </div>
