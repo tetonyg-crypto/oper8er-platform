@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-const PROXY_URL = 'https://web-production-af474.up.railway.app'
+const PROXY_URL = 'https://oper8er-proxy-production.up.railway.app'
 const CWS_URL = 'https://chromewebstore.google.com/detail/brevmont'
 
 interface SessionData {

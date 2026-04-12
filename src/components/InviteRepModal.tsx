@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const PROXY_URL = 'https://web-production-af474.up.railway.app'
+const PROXY_URL = 'https://oper8er-proxy-production.up.railway.app'
 
 interface InviteRepModalProps {
   open: boolean

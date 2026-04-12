@@ -8,7 +8,7 @@ import InviteRepModal from '../components/InviteRepModal'
 import OnboardingView from '../components/OnboardingView'
 import type { GenerationEvent } from '../hooks/useEvents'
 
-const PROXY_URL = 'https://web-production-af474.up.railway.app'
+const PROXY_URL = 'https://oper8er-proxy-production.up.railway.app'
 
 interface OwnerData {
   dealership: {

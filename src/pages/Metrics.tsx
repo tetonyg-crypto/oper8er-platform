@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 
-const PROXY_URL = 'https://web-production-af474.up.railway.app'
+const PROXY_URL = 'https://oper8er-proxy-production.up.railway.app'
 
 interface MetricsSummary {
   total: number
