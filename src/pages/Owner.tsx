@@ -36,10 +36,16 @@ export default function Owner() {
   const [copied, setCopied] = useState(false)
   const [onboardingState, setOnboardingState] = useState<any>(null)
 
+  const impersonateId = typeof window !== 'undefined' ? sessionStorage.getItem('impersonate_dealership_id') : null
+  const impersonateName = typeof window !== 'undefined' ? sessionStorage.getItem('impersonate_dealership_name') : null
+
   const fetchDashboard = useCallback(async () => {
     if (!session?.access_token) return
     try {
-      const resp = await fetch(`${PROXY_URL}/api/owner/dashboard`, {
+      const url = impersonateId
+        ? `${PROXY_URL}/api/owner/dashboard?impersonate=${impersonateId}`
+        : `${PROXY_URL}/api/owner/dashboard`
+      const resp = await fetch(url, {
         headers: { 'Authorization': `Bearer ${session.access_token}` },
       })
       if (resp.ok) {
@@ -105,6 +111,16 @@ export default function Owner() {
 
   return (
     <div className="min-h-screen bg-[#F2F2F7]">
+      {/* Impersonation Banner */}
+      {impersonateName && (
+        <div className="fixed top-0 left-0 right-0 z-[100] bg-[#FF9500] text-white text-center py-1.5 text-sm font-semibold">
+          Viewing as: {impersonateName}
+          <button
+            onClick={() => { sessionStorage.removeItem('impersonate_dealership_id'); sessionStorage.removeItem('impersonate_dealership_name'); window.location.href = '/admin' }}
+            className="ml-4 underline cursor-pointer"
+          >Exit</button>
+        </div>
+      )}
       {/* Nav */}
       <nav className="sticky top-0 z-50 bg-white border-b border-black/8 px-6 py-3 flex items-center justify-between">
         <div className="flex items-center gap-2">
