@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import Owner from './pages/Owner'
 import Errors from './pages/Errors'
 import Metrics from './pages/Metrics'
+import Founder from './pages/Founder'
 
 export default function App() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>
             <Route path="/owner" element={<Owner />} />
+            <Route path="/founder" element={<Founder />} />
           </Route>
         </Routes>
       </AuthProvider>
