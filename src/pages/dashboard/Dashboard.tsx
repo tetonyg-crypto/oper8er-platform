@@ -11,7 +11,7 @@ export default function Dashboard() {
   const [dealershipName, setDealershipName] = useState('')
 
   useEffect(() => {
-    supabase.from('dealerships').select('name').eq('status', 'active').limit(1).single()
+    supabase.from('dealerships').select('name').eq('status', 'active').order('created_at', { ascending: false }).limit(1).single()
       .then(({ data }) => { if (data?.name) setDealershipName(data.name) })
   }, [])
 

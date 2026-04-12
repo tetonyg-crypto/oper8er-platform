@@ -14,7 +14,13 @@ const LABEL_MAP: Record<string, string> = {
   COMPETITOR_OFFER: 'Competitor Offer',
   TIMING: 'Timing / Not Ready',
   SPOUSE_APPROVAL: 'Spouse Approval',
+  SPOUSE_OBJECTION: 'Spouse Approval',
   RESEARCH_PHASE: 'Research Phase',
+  GHOST_NO_RESPONSE: 'Ghost — No Response',
+  DE_ESCALATION: 'De-escalation',
+  PRICING: 'Pricing Inquiry',
+  SCHEDULING: 'Scheduling',
+  QUALIFICATION: 'Qualification',
 }
 
 const COLOR_MAP: Record<string, string> = {
