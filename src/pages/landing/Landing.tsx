@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
-import { PRICING as PRICING_CONSTANTS } from '../../lib/pricing'
+// Pricing constants available at ../../lib/pricing.ts
 
 function useLiveStats() {
   const [stats, setStats] = useState([

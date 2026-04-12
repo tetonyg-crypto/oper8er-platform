@@ -18,7 +18,7 @@ export default function HunterView({
   allEvents,
   todayEvents,
   weekEvents,
-  monthEvents,
+  monthEvents: _monthEvents,
   loading,
 }: HunterViewProps) {
   const activeConversations = new Set(
