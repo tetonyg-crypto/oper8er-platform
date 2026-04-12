@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { supabase } from '../../lib/supabase'
+import { PRICING as PRICING_CONSTANTS } from '../../lib/pricing'
 
 function useLiveStats() {
   const [stats, setStats] = useState([
@@ -31,81 +32,80 @@ function useLiveStats() {
 
 const PRODUCTS: { name: string; tagline: string; features: string[] }[] = [
   {
-    name: 'Floor Operator',
+    name: 'Floor',
     tagline: 'AI copilot for every rep on the floor.',
     features: [
       'Generate texts, emails, and CRM notes in under 3 seconds',
-      'Works inside VinSolutions, Facebook, Gmail, and LinkedIn',
-      'Objection detection flags tough conversations automatically',
+      'Works inside VinSolutions',
+      'Self-serve onboarding',
       'Activity feed shows exactly what every rep is doing, in real time',
     ],
   },
   {
-    name: 'Harpoon',
-    tagline: 'Automated ghost lead recovery.',
+    name: 'Command',
+    tagline: 'Full GM visibility and ghost lead recovery.',
     features: [
-      'Identifies leads going cold after 48 hours of silence',
-      'Generates re-engagement sequences tailored to each customer',
-      'One-click reassignment from floor manager view',
-      'Tracks recovery rates and measures revenue recaptured',
+      'Multi-CRM support',
+      'GM dashboard with advanced analytics',
+      'Ghost lead queue identifies leads going cold',
+      'Voice cloning and objection tracking',
     ],
   },
   {
-    name: 'Trident',
-    tagline: 'Full sales floor intelligence.',
+    name: 'Group',
+    tagline: 'Multi-rooftop sales floor intelligence.',
     features: [
-      'Rep leaderboards with live activity rankings',
-      'Objection pattern analysis across your entire team',
-      'Monthly pace tracking tied to revenue goals',
-      'Platform breakdown shows where deals actually happen',
+      'Everything in Command across all locations',
+      'Multi-rooftop rollup and group-level reporting',
+      'Dedicated onboarding and priority support',
+      'Custom pricing — contact for quote',
     ],
   },
 ]
 
 const PRICING = [
   {
-    name: 'Floor Operator',
-    price: '$1,500',
+    name: 'Floor',
+    price: '$1,350',
     period: '/mo',
     features: [
       'AI text, email, and CRM generation',
-      'Up to 10 reps',
-      'VinSolutions + 1 platform',
+      'Self-serve onboarding',
+      'VinSolutions integration',
       'Activity feed',
-      'Basic objection detection',
+      'Up to 5 reps included',
     ],
     cta: 'Start with Floor',
     highlighted: false,
   },
   {
-    name: 'Harpoon',
-    price: '$2,500',
+    name: 'Command',
+    price: '$3,500',
     period: '/mo',
     features: [
-      'Everything in Floor Operator',
-      'Up to 25 reps',
-      'All 4 platforms',
+      'Everything in Floor',
+      'Multi-CRM support',
+      'GM dashboard + analytics',
       'Ghost lead queue + recovery',
-      'Lead reassignment',
-      'Advanced objection tracking',
+      'Voice cloning',
+      '$35K/year option (save $7,000)',
     ],
-    cta: 'Get Harpoon',
+    cta: 'Get Command',
     highlighted: true,
   },
   {
-    name: 'Trident',
-    price: '$4,000',
-    period: '/mo',
+    name: 'Group',
+    price: 'Custom',
+    period: '',
     features: [
-      'Everything in Harpoon',
-      'Unlimited reps',
-      'Rep leaderboards + rankings',
-      'Monthly revenue pace tracking',
-      'Platform intelligence',
+      'Everything in Command',
+      'Multi-rooftop rollup',
+      'Group-level reporting',
       'Dedicated onboarding',
       'Priority support',
+      'Contact for quote',
     ],
-    cta: 'Go Trident',
+    cta: 'Contact Us',
     highlighted: false,
   },
 ]
@@ -322,17 +322,17 @@ export default function Landing() {
             <ul className="space-y-2">
               <li>
                 <a href="#product" className="text-sm text-[#AEAEB2] hover:text-white transition-colors">
-                  Floor Operator
+                  Floor
                 </a>
               </li>
               <li>
                 <a href="#product" className="text-sm text-[#AEAEB2] hover:text-white transition-colors">
-                  Harpoon
+                  Command
                 </a>
               </li>
               <li>
                 <a href="#product" className="text-sm text-[#AEAEB2] hover:text-white transition-colors">
-                  Trident
+                  Group
                 </a>
               </li>
               <li>
