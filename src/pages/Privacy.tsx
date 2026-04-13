@@ -1,8 +1,8 @@
 export default function Privacy() {
   return (
-    <div style={{ background: '#F2F2F7', minHeight: '100vh', fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
-      <div style={{ maxWidth: 720, margin: '0 auto', padding: '48px 24px' }}>
-        <div style={{ background: '#fff', borderRadius: 16, border: '1px solid rgba(0,0,0,0.08)', padding: 48, boxShadow: '0 1px 3px rgba(0,0,0,0.06)' }}>
+    <div className="bg-[#F2F2F7] min-h-screen" style={{ fontFamily: "-apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif" }}>
+      <div className="max-w-[720px] mx-auto px-4 md:px-8 py-8 md:py-12">
+        <div className="bg-white rounded-2xl border border-black/8 px-4 py-8 md:p-12 shadow-sm">
           <div style={{ fontSize: 11, fontWeight: 600, letterSpacing: '0.6px', textTransform: 'uppercase' as const, color: '#7F77DD', marginBottom: 8 }}>LEGAL</div>
           <h1 style={{ fontSize: 32, fontWeight: 700, color: '#1C1C1E', letterSpacing: '-0.3px', marginBottom: 8 }}>Privacy Policy</h1>
           <p style={{ fontSize: 14, color: '#636366', marginBottom: 32 }}>Effective April 2, 2026 &middot; Last updated April 2, 2026</p>
@@ -74,7 +74,7 @@ export default function Privacy() {
           </Section>
         </div>
 
-        <div style={{ textAlign: 'center' as const, padding: '24px 0', fontSize: 12, color: '#AEAEB2' }}>
+        <div className="text-center py-6 text-xs text-[#AEAEB2]">
           &copy; 2026 Brevmont Labs LLC. All rights reserved.
         </div>
       </div>

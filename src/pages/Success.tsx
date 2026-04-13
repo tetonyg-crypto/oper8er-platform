@@ -84,7 +84,7 @@ export default function Success() {
         </div>
       </nav>
 
-      <div className="max-w-[640px] mx-auto px-6 py-16">
+      <div className="w-full max-w-[640px] mx-auto px-4 md:px-6 py-8 md:py-16">
         {/* Confirmation */}
         <div className="text-center mb-12">
           <div className="w-16 h-16 rounded-full bg-[#34C759]/15 flex items-center justify-center mx-auto mb-5">
@@ -104,7 +104,7 @@ export default function Success() {
             Your License Key
           </p>
           <div className="flex items-center gap-3">
-            <code className="flex-1 text-2xl font-bold text-[#7F77DD] tracking-wider font-mono">
+            <code className="flex-1 text-lg md:text-2xl font-bold text-[#7F77DD] tracking-wider font-mono break-all">
               {data.license_key}
             </code>
             <button
@@ -172,7 +172,7 @@ export default function Success() {
         </div>
 
         {/* Support + Dashboard links */}
-        <div className="mt-12 pt-8 border-t border-black/8 flex items-center justify-between">
+        <div className="mt-12 pt-8 border-t border-black/8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <p className="text-sm text-[#636366]">
               Need help? Email{' '}

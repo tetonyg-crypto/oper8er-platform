@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /internal/
+Disallow: /founder/
+Disallow: /admin
+Sitemap: https://app.brevmont.com/sitemap.xml

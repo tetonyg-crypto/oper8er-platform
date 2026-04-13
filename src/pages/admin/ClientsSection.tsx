@@ -97,7 +97,7 @@ export default function ClientsSection() {
             No clients yet. Click "Add Client" to get started.
           </div>
         ) : (
-          <table className="w-full">
+          <div className="overflow-x-auto"><table className="w-full min-w-[700px]">
             <thead>
               <tr className="border-b border-black/8">
                 <th className="text-left text-[11px] uppercase font-semibold tracking-wide text-[#636366] px-4 py-3">
@@ -155,14 +155,14 @@ export default function ClientsSection() {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table></div>
         )}
       </div>
 
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="card w-[420px]">
+          <div className="card w-full max-w-[420px] mx-4">
             <h2 className="text-lg font-bold text-[#1C1C1E] mb-4">Add New Client</h2>
             <div className="space-y-3">
               <div>

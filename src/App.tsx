@@ -14,6 +14,8 @@ import Founder from './pages/Founder'
 import OwnerROI from './pages/OwnerROI'
 import Costs from './pages/Costs'
 import Changelog from './pages/Changelog'
+import Support from './pages/Support'
+import Help from './pages/Help'
 
 export default function App() {
   return (
@@ -30,6 +32,8 @@ export default function App() {
           <Route path="/internal/errors" element={<Errors />} />
           <Route path="/internal/metrics" element={<Metrics />} />
           <Route path="/changelog" element={<Changelog />} />
+          <Route path="/support" element={<Support />} />
+          <Route path="/help" element={<Help />} />
 
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>

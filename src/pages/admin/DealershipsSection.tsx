@@ -131,7 +131,7 @@ export default function DealershipsSection() {
                     <td className="px-4 py-3 text-sm font-medium text-[#1C1C1E]">{d.events_30d}</td>
                     <td className="px-4 py-3 text-sm text-[#636366]">{d.reps.active}/{d.reps.total}</td>
                     <td className="px-4 py-3 text-sm text-[#AEAEB2]">{new Date(d.created_at).toLocaleDateString()}</td>
-                    <td className="px-4 py-3 space-x-2">
+                    <td className="px-4 py-3 space-x-2 whitespace-nowrap">
                       <button
                         onClick={() => setExpandedId(expandedId === d.id ? null : d.id)}
                         className="text-xs font-semibold text-[#7F77DD] hover:underline cursor-pointer"
@@ -165,7 +165,7 @@ export default function DealershipsSection() {
                   {expandedId === d.id && (
                     <tr key={`${d.id}-details`} className="bg-[#F9F9FB]">
                       <td colSpan={7} className="px-6 py-4">
-                        <div className="grid grid-cols-3 gap-4 text-sm">
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                           <div>
                             <p className="text-[11px] uppercase font-semibold text-[#636366] mb-1">License Key</p>
                             <p className="font-mono text-[#1C1C1E]">{d.license_key || 'None'}</p>
@@ -194,7 +194,7 @@ export default function DealershipsSection() {
       {/* Message Modal */}
       {messageModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="card w-[500px]">
+          <div className="card w-full max-w-[500px] mx-4">
             {msgSent ? (
               <div className="text-center py-6">
                 <div className="w-12 h-12 rounded-full bg-[#34C759]/15 flex items-center justify-center mx-auto mb-3">
