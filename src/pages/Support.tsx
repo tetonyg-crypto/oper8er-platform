@@ -127,7 +127,7 @@ export default function Support() {
           </p>
           <p className="text-sm text-[#636366]">
             Need urgent help? Call{' '}
-            <a href="tel:3076993743" className="text-[#7F77DD] underline">307-699-3743</a>
+            <a href="tel:3076900291" className="text-[#7F77DD] underline">307-690-0291</a>
           </p>
         </div>
       </div>
