@@ -25,7 +25,7 @@ const FAQ_ITEMS: FAQItem[] = [
   },
   {
     question: 'What are the pricing tiers?',
-    answer: 'Floor ($1,350/mo for up to 5 reps), Command ($3,500/mo for unlimited reps + advanced features), and Founding Dealer Pilot ($5,000 for 90 days).',
+    answer: 'Founding Dealer Pilot ($2,500 one-time for 90 days, first 5 dealers only, converts to $1,999/mo founding rate), Command ($2,999/mo or $29,990/year for your entire floor), and Group (starts at $9,999/mo for 3+ rooftops).',
   },
   {
     question: 'Is my data private?',
