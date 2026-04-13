@@ -174,7 +174,7 @@ export default function ClientsSection() {
                   value={formDealership}
                   onChange={(e) => setFormDealership(e.target.value)}
                   className="w-full border border-black/10 rounded-lg px-3 py-2 text-sm text-[#1C1C1E] focus:outline-none focus:ring-2 focus:ring-[#7F77DD]/30 focus:border-[#7F77DD]"
-                  placeholder="Stone's Auto Group"
+                  placeholder="Dealership Name"
                 />
               </div>
               <div>
