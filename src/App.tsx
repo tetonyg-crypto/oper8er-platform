@@ -13,6 +13,7 @@ import Metrics from './pages/Metrics'
 import Founder from './pages/Founder'
 import OwnerROI from './pages/OwnerROI'
 import Costs from './pages/Costs'
+import Changelog from './pages/Changelog'
 
 export default function App() {
   return (
@@ -28,6 +29,7 @@ export default function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/internal/errors" element={<Errors />} />
           <Route path="/internal/metrics" element={<Metrics />} />
+          <Route path="/changelog" element={<Changelog />} />
 
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>

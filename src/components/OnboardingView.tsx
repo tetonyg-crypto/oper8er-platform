@@ -25,7 +25,7 @@ const steps = [
     title: 'Install the Brevmont extension',
     description: 'Your reps need the Chrome extension to generate messages inside VinSolutions.',
     actionLabel: 'Install Extension',
-    actionHref: 'https://chrome.google.com/webstore/detail/brevmont/placeholder',
+    actionHref: 'https://chromewebstore.google.com/detail/brevmont-ai-sales-assistant/odianhkmfpbcnggigamhjbpkkcbkcckh',
   },
   {
     key: 'first_generation_at' as const,
