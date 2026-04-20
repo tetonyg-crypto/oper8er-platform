@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import type { GenerationEvent } from '../../hooks/useEvents'
 import { initials } from '../../lib/utils'
 
@@ -6,15 +7,25 @@ interface RepLeaderboardProps {
   allEvents: GenerationEvent[]
 }
 
-export default function RepLeaderboard({ todayEvents }: RepLeaderboardProps) {
+export default function RepLeaderboard({ todayEvents, allEvents }: RepLeaderboardProps) {
+  // Build name → rep_id map from the widest event pool we have. Prefer the
+  // most recent rep_id if a name appears under multiple ids (rename/collision).
+  const nameToId = new Map<string, string>()
+  const pool = allEvents.length > 0 ? allEvents : todayEvents
+  for (let i = pool.length - 1; i >= 0; i--) {
+    const e = pool[i]
+    if (!e.rep_name || e.rep_name === 'Unassigned') continue
+    if (!e.rep_id) continue
+    if (!nameToId.has(e.rep_name)) nameToId.set(e.rep_name, e.rep_id)
+  }
+
   const repCounts = new Map<string, number>()
   todayEvents.forEach((e) => {
     if (!e.rep_name || e.rep_name === 'Unassigned') return
     repCounts.set(e.rep_name, (repCounts.get(e.rep_name) || 0) + 1)
   })
 
-  const sorted = Array.from(repCounts.entries())
-    .sort((a, b) => b[1] - a[1])
+  const sorted = Array.from(repCounts.entries()).sort((a, b) => b[1] - a[1])
 
   if (sorted.length === 0) {
     return (
@@ -38,13 +49,9 @@ export default function RepLeaderboard({ todayEvents }: RepLeaderboardProps) {
         {sorted.map(([name, count], i) => {
           const rank = i + 1
           const delta = rank > 1 ? topCount - count : 0
-          return (
-            <div
-              key={name}
-              className={`flex items-center gap-3 py-2 px-3 rounded-xl ${
-                rank === 1 ? 'bg-[#F0EFFF]' : ''
-              }`}
-            >
+          const repId = nameToId.get(name)
+          const rowInner = (
+            <>
               <span
                 className={`text-sm font-bold w-6 text-center ${
                   rank === 1 ? 'text-[#7F77DD]' : 'text-[#AEAEB2]'
@@ -64,6 +71,25 @@ export default function RepLeaderboard({ todayEvents }: RepLeaderboardProps) {
                 )}
               </div>
               <span className="text-lg font-bold text-[#7F77DD]">{count}</span>
+            </>
+          )
+
+          const classes = `flex items-center gap-3 py-2 px-3 rounded-xl transition-colors ${
+            rank === 1 ? 'bg-[#F0EFFF]' : ''
+          } ${repId ? 'hover:bg-[#EFEEFF] cursor-pointer' : ''}`
+
+          return repId ? (
+            <Link
+              key={name}
+              to={`/rep/${repId}`}
+              className={classes}
+              aria-label={`Open rep detail for ${name}`}
+            >
+              {rowInner}
+            </Link>
+          ) : (
+            <div key={name} className={classes}>
+              {rowInner}
             </div>
           )
         })}
