@@ -16,6 +16,7 @@ import Costs from './pages/Costs'
 import Changelog from './pages/Changelog'
 import Support from './pages/Support'
 import Help from './pages/Help'
+import RepDetail from './pages/rep/RepDetail'
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
           <Route path="/changelog" element={<Changelog />} />
           <Route path="/support" element={<Support />} />
           <Route path="/help" element={<Help />} />
+          <Route path="/rep/:id" element={<RepDetail />} />
 
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>
