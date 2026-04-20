@@ -36,6 +36,18 @@ export interface RepHistoryTotals {
   estimated_time_saved_minutes: number
 }
 
+export interface HourlyBucket {
+  hour: number // 0-23
+  count: number
+}
+
+export interface ComparisonPoint {
+  date: string
+  rep_total: number
+  floor_avg: number
+  top_performer: number
+}
+
 export interface RepInfo {
   id: string
   name: string
@@ -58,6 +70,10 @@ export interface UseRepHistoryReturn {
   days: RepDayBucket[]
   totals: RepHistoryTotals
   platforms: Record<string, number>
+  hours: HourlyBucket[]
+  comparison: ComparisonPoint[]
+  floor_avg_daily: number
+  top_performer_daily: number
   loading: boolean
   error: string | null
   notFound: boolean
@@ -70,9 +86,15 @@ function localDayKey(d: Date): string {
   return `${y}-${m}-${day}`
 }
 
+interface FloorEventRow {
+  created_at: string
+  rep_id: string | null
+}
+
 export function useRepHistory(repId: string | undefined, windowDays: number): UseRepHistoryReturn {
   const [rep, setRep] = useState<RepInfo | null>(null)
   const [events, setEvents] = useState<RepEventRow[]>([])
+  const [floorEvents, setFloorEvents] = useState<FloorEventRow[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
   const [notFound, setNotFound] = useState(false)
@@ -104,9 +126,9 @@ export function useRepHistory(repId: string | undefined, windowDays: number): Us
       const r = repRows[0] as RepInfo
       setRep(r)
 
-      // 2. Load events in window
+      // 2. Load events in window (rep + floor) in parallel
       const since = new Date(Date.now() - windowDays * 24 * 60 * 60 * 1000).toISOString()
-      const { data, error: evErr } = await supabase
+      const repPromise = supabase
         .from('generation_events')
         .select('created_at, has_text, has_email, has_crm, customer_name, platform')
         .eq('rep_id', repId)
@@ -114,9 +136,30 @@ export function useRepHistory(repId: string | undefined, windowDays: number): Us
         .order('created_at', { ascending: true })
         .limit(10000)
 
+      const floorPromise = r.dealership_id
+        ? supabase
+            .from('generation_events')
+            .select('created_at, rep_id')
+            .eq('dealership_id', r.dealership_id)
+            .gte('created_at', since)
+            .order('created_at', { ascending: true })
+            .limit(50000)
+        : Promise.resolve({ data: [], error: null })
+
+      const [{ data, error: evErr }, { data: floorData, error: floorErr }] = await Promise.all([
+        repPromise,
+        floorPromise,
+      ])
+
       if (evErr) {
         setError(evErr.message)
         return
+      }
+      if (floorErr) {
+        // Non-fatal — rep chart still renders without comparison
+        setFloorEvents([])
+      } else {
+        setFloorEvents((floorData as FloorEventRow[]) || [])
       }
       setEvents((data as RepEventRow[]) || [])
     } catch (e) {
@@ -180,5 +223,82 @@ export function useRepHistory(repId: string | undefined, windowDays: number): Us
     estimated_time_saved_minutes: Math.round(events.length * 1.5),
   }
 
-  return { rep, days, totals, platforms, loading, error, notFound }
+  // Hourly buckets (0-23) across the entire window
+  const hourCounts: number[] = new Array(24).fill(0)
+  events.forEach((e) => {
+    const h = new Date(e.created_at).getHours()
+    if (h >= 0 && h < 24) hourCounts[h] += 1
+  })
+  const hours: HourlyBucket[] = hourCounts.map((count, hour) => ({ hour, count }))
+
+  // Floor comparison: daily average across all reps in the dealership + top performer's daily count
+  const floorDayMap = new Map<string, Map<string, number>>() // date -> rep_id -> count
+  const activeRepsByDay = new Map<string, Set<string>>()
+  floorEvents.forEach((e) => {
+    if (!e.rep_id) return
+    const key = localDayKey(new Date(e.created_at))
+    let byRep = floorDayMap.get(key)
+    if (!byRep) {
+      byRep = new Map()
+      floorDayMap.set(key, byRep)
+    }
+    byRep.set(e.rep_id, (byRep.get(e.rep_id) || 0) + 1)
+    let reps = activeRepsByDay.get(key)
+    if (!reps) {
+      reps = new Set()
+      activeRepsByDay.set(key, reps)
+    }
+    reps.add(e.rep_id)
+  })
+
+  const comparison: ComparisonPoint[] = days.map((d) => {
+    const byRep = floorDayMap.get(d.date)
+    let floorAvg = 0
+    let topPerformer = 0
+    if (byRep && byRep.size > 0) {
+      const values = Array.from(byRep.values())
+      const sum = values.reduce((a, b) => a + b, 0)
+      floorAvg = Math.round((sum / values.length) * 10) / 10
+      topPerformer = Math.max(...values)
+    }
+    return {
+      date: d.date,
+      rep_total: d.total,
+      floor_avg: floorAvg,
+      top_performer: topPerformer,
+    }
+  })
+
+  // Summary scalars (for reference lines / labels)
+  const totalFloorEventCount = floorEvents.length
+  const activeDayCount = activeRepsByDay.size || 1
+  // weighted daily avg = (sum of per-day floor avgs) / day count
+  const floorAvgDaily =
+    comparison.length > 0
+      ? Math.round((comparison.reduce((a, b) => a + b.floor_avg, 0) / comparison.length) * 10) / 10
+      : 0
+  const topPerformerDaily =
+    comparison.length > 0
+      ? Math.max(...comparison.map((c) => c.top_performer))
+      : 0
+
+  // Keep totalFloorEventCount / activeDayCount referenced so the TS compiler
+  // (strict unused-locals) doesn't prune them; callers of this hook may want
+  // them later. They're cheap to compute.
+  void totalFloorEventCount
+  void activeDayCount
+
+  return {
+    rep,
+    days,
+    totals,
+    platforms,
+    hours,
+    comparison,
+    floor_avg_daily: floorAvgDaily,
+    top_performer_daily: topPerformerDaily,
+    loading,
+    error,
+    notFound,
+  }
 }

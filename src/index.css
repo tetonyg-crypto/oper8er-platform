@@ -28,3 +28,24 @@ body {
 .skeleton { background:linear-gradient(90deg,#E8E8ED 25%,#F2F2F7 50%,#E8E8ED 75%);background-size:200% 100%;animation:shimmer 1.5s infinite;border-radius:8px; }
 @keyframes dot-pulse { 0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.85)} }
 .card { background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:16px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.06); }
+
+/* Print-ready: every /rep/:id (and any future report page) prints clean */
+.print-only { display: none; }
+@media print {
+  @page { margin: 0.5in; size: letter; }
+  html, body { background: #fff !important; }
+  .no-print, .no-print-inline { display: none !important; }
+  .print-only { display: block !important; }
+  /* Taller chart in print so the whole history is readable on paper */
+  .chart-print-h { height: 320px !important; }
+  .card {
+    box-shadow: none !important;
+    border: 1px solid #E5E5EA !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .rep-detail-page { padding: 0 !important; }
+  /* Collapse the max-width wrapper so we use the full page */
+  .rep-detail-page > div { max-width: none !important; padding: 0 !important; }
+  a { color: inherit !important; text-decoration: none !important; }
+}
