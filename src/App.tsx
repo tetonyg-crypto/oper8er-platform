@@ -18,6 +18,8 @@ import Support from './pages/Support'
 import Help from './pages/Help'
 import RepDetail from './pages/rep/RepDetail'
 import NeedsAttention from './pages/NeedsAttention'
+import TokenSettings from './pages/settings/TokenSettings'
+import Join from './pages/Join'
 
 export default function App() {
   return (
@@ -38,6 +40,8 @@ export default function App() {
           <Route path="/help" element={<Help />} />
           <Route path="/rep/:id" element={<RepDetail />} />
           <Route path="/needs-attention" element={<NeedsAttention />} />
+          <Route path="/settings/token" element={<TokenSettings />} />
+          <Route path="/join/:dealershipId" element={<Join />} />
 
           {/* Protected routes */}
           <Route element={<ProtectedRoute />}>
